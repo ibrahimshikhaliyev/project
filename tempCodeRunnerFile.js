@@ -1,4 +1,4 @@
-let item1=true
-   ,item2=false;
 
-console.log(item1||item2);
+const num=10;
+
+(num<50) ? console.log("true"): console.log("wrong");
