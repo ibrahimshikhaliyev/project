@@ -1,46 +1,32 @@
 "use strict";
 //~~~c()!!!!@@@###$$$$$$$$$$^%%%^^&&&****(((((((()))))))___+++}}{{{|||}}}
-let numberOfFilms;
-
-function start() {
-    numberOfFilms = +prompt("how much films did u wantched?", "");
-    while (numberOfFilms == null || numberOfFilms == '' || isNaN(numberOfFilms)) {
-        numberOfFilms = +prompt("how much films did u wantched?", "");
-    }
 
 
-}
-start();
+
 const personalMovieDB = {
-    count: numberOfFilms,
-    movies: {
-
-    },
+    count : 0,
+    movies: {},
     actors: {},
     genres: [],
-    privat: false
-
-};
-
-function showMyDB() {
+    privat: true,
+    start : function(){
+        personalMovieDB.count = +prompt("how much films did u wantched?", "");
+        while (personalMovieDB.count == null || personalMovieDB.count == '' || isNaN(personalMovieDB.count)) {
+            personalMovieDB.count = +prompt("how much films did u wantched?", "");
+    }},
+    showMyDB: function() {
     if (personalMovieDB.privat == false) {
         console.log(personalMovieDB);
-    }
-
-
-}
-showMyDB();
-
-function writeYourGenres() {
-    for(let i=0;i<3;i++){
-        
-        personalMovieDB.genres=prompt(`your genre number ${i+1}`,"");
-    }
+    }},
+    writeYourGenres: function() {
+        for(let i=0;i<3;i++){
     
-}
-writeYourGenres();
-
-for (let i = 0; i < personalMovieDB.count; i++) {
+            personalMovieDB.genres=prompt(`your genre number ${i+1}`,"");
+        }
+    
+    },
+    rememberMyfilms: function () {
+        for (let i = 0; i < personalMovieDB.count; i++) {
     const lastFilm1 = prompt("what is the last film that u watched?", "");
     const rate1 = +prompt("how would u rate it?", "");
     if (lastFilm1 != null && rate1 != null && lastFilm1.length < 50 && rate1 != '' && lastFilm1 != '') {
@@ -52,13 +38,31 @@ for (let i = 0; i < personalMovieDB.count; i++) {
     personalMovieDB.movies[lastFilm1] = rate1;
 
 }
-if (personalMovieDB.count < 10) {
+    },
+
+    detectPersonalLEvel:function () {
+        if (personalMovieDB.count < 10) {
     console.log("u have watched quite a few movies ");
-} else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
+    } else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
     console.log("u average viewer ");
-} else if (personalMovieDB.count > 30) {
+    } else if (personalMovieDB.count > 30) {
     console.log("u cinemaman");
-} else {
+    } else {
     console.log("error");
+   }
+    },
+    toggleVisibleMyDB: function (privat) {
+        if(privat ==false){
+            privat=true;
+        }else if(privat==true){
+            privat=false;
+        }
+        return privat;
+    }
 }
-console.log(personalMovieDB);
+
+console.log(personalMovieDB.toggleVisibleMyDB(personalMovieDB.privat));
+personalMovieDB.showMyDB();
+
+
+

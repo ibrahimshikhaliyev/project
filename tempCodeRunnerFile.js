@@ -1,4 +1,9 @@
 
-const num=10;
 
-(num<50) ? console.log("true"): console.log("wrong");
+
+const newArr = [...arr1,...arr2,'push','usydg']; 
+
+console.log(newArr);
+
+const newobj = {...obj};
+console.log(newobj);
