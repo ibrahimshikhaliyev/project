@@ -8,21 +8,37 @@ const personalMovieDB = {
     movies: {},
     actors: {},
     genres: [],
-    privat: true,
+    privat: false,
     start : function(){
-        personalMovieDB.count = +prompt("how much films did u wantched?", "");
-        while (personalMovieDB.count == null || personalMovieDB.count == '' || isNaN(personalMovieDB.count)) {
-            personalMovieDB.count = +prompt("how much films did u wantched?", "");
+        count = +prompt("how much films did u wantched?", "");
+        while (count == null || count == '' || isNaN(personalMovieDB.count)) {
+            count = +prompt("how much films did u wantched?", "");
     }},
     showMyDB: function() {
     if (personalMovieDB.privat == false) {
-        console.log(personalMovieDB);
+        return personalMovieDB;
     }},
     writeYourGenres: function() {
-        for(let i=0;i<3;i++){
+        for(let i=0;i<1;i++){
+            //personalMovieDB.genres[i]=prompt(`your genre number ${i+1}`,"");
+            let genre = prompt("input your genres useing comma " ,"");
+
+            if (genre =='' ||genre == false) {
+                i--;
+            }
+            personalMovieDB.genres=genre.split(",");
     
-            personalMovieDB.genres=prompt(`your genre number ${i+1}`,"");
         }
+
+       
+        
+        
+        
+        personalMovieDB.genres.forEach((item,i)=>{
+            
+            console.log(`your genre number ${i+1} is ${item} `);
+            
+        });
     
     },
     rememberMyfilms: function () {
@@ -41,11 +57,11 @@ const personalMovieDB = {
     },
 
     detectPersonalLEvel:function () {
-        if (personalMovieDB.count < 10) {
+        if (count < 10) {
     console.log("u have watched quite a few movies ");
-    } else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
+    } else if (count > 10 && count < 30) {
     console.log("u average viewer ");
-    } else if (personalMovieDB.count > 30) {
+    } else if (count > 30) {
     console.log("u cinemaman");
     } else {
     console.log("error");
@@ -61,8 +77,9 @@ const personalMovieDB = {
     }
 }
 
+
 console.log(personalMovieDB.toggleVisibleMyDB(personalMovieDB.privat));
-personalMovieDB.showMyDB();
 
-
+console.log(personalMovieDB.showMyDB());
+personalMovieDB.writeYourGenres();
 
